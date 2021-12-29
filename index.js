@@ -1,23 +1,23 @@
-var CrossesOut = document.querySelector('.data.cross');
-var DropsOut = document.querySelector('.data.drop');
-var ExpOut = document.querySelector('.data.exp');
-var TheorOut = document.querySelector('.data.theor');
-var DiffOut = document.querySelector('.data.diff');
+const CrossesOut = document.querySelector('.data.cross');
+const DropsOut = document.querySelector('.data.drop');
+const ExpOut = document.querySelector('.data.exp');
+const TheorOut = document.querySelector('.data.theor');
+const DiffOut = document.querySelector('.data.diff');
 
-var grid = document.getElementById('grid');
+const grid = document.getElementById('grid');
 
-var slider = document.getElementById("length");
-var RatioOut = document.getElementById("ratioDisplay");
+const slider = document.getElementById('length');
+const RatioOut = document.getElementById('ratioDisplay');
 RatioOut.innerHTML = slider.value; // Display the default slider value
-var length;
+let length;
 
-var crosses;
-var drops;
-var experimental;
-var theoretical;
-var rst = false;  //determine if need to reset when drop() is called
+let crosses;
+let drops;
+let experimental;
+let theoretical;
+let rst = false;  //determine if need to reset when drop() is called
 
-var colorIndex = 0; //keeps track of which color to use
+let colorIndex = 0; //keeps track of which color to use
 
 reset();
 
