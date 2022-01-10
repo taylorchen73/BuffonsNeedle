@@ -33,7 +33,7 @@ function reset() {
     let WtoL = 1 / slider.value;
     theoretical = 2 / Math.PI * slider.value * (WtoL * Math.acos(WtoL) - Math.sqrt(1 - WtoL * WtoL) + 1);
   }
-  TheorOut.innerHTML = theoretical.toFixed(10);
+  TheorOut.innerHTML = theoretical.toFixed(5);
 
   DiffOut.innerHTML = "-";
   ExpOut.innerHTML = "-";
@@ -65,14 +65,16 @@ function drop(amt) {
     if (theta > Math.PI / 2)
       theta = Math.PI - theta;
 
-    //divs are positioned from the top, correcting x so it references the center
+    //divs are positioned from the corner, correcting x so it references the center
     needle.style.left = `${x - length / 2}px`;
     needle.style.top = `${y}px`;
-    needle.style.backgroundColor = `${color()}`;
+    //needle.style.backgroundColor = `${color()}`;
     grid.appendChild(needle);
 
-    if (checkCross(x, theta))
+    if (checkCross(x, theta)) {
       crosses++;
+      needle.style.backgroundColor = 'rgb(0, 156, 0)';
+    }
   }
   CrossesOut.innerHTML = crosses;
 
@@ -80,11 +82,12 @@ function drop(amt) {
   DropsOut.innerHTML = drops;
 
   experimental = crosses / drops;
-  ExpOut.innerHTML = experimental.toFixed(10);
+  ExpOut.innerHTML = experimental.toFixed(5);
 
-  DiffOut.innerHTML = (Math.abs(experimental - theoretical) / theoretical * 100).toFixed(10);
+  DiffOut.innerHTML = (Math.abs(experimental - theoretical) / theoretical * 100).toFixed(5);
 }
 
+//checks if needle crosses
 function checkCross(x, theta) {
   let distance; //distance to closest line
   distance = (x % 100 < 50) ? x % 100 : 100 - x % 100;
@@ -99,10 +102,10 @@ function checkCross(x, theta) {
 }
 
 // Update the current slider value
-slider.oninput = function () {
+slider.oninput = function() {
   RatioOut.innerHTML = this.value;
   rst = true;
-}
+};
 
 //generates a color using HSL
 function color() {
